@@ -29,11 +29,12 @@ instance FromJSON ModuleName where
 instance ToJSON ModuleName where
   toJSON (ModuleName n) = String n
 
-
 data MuiModule = MuiModule
   { muiModuleName :: ModuleName
   , muiModuleComponentName :: Text
   , muiModuleProps :: [MuiProp]
+  , muiModuleExtraImports :: [Text]
+  , muiModuleExtraExtensions :: [Text]
   } deriving (Eq, Generic, Ord, Show)
 
 instance FromJSON MuiModule where

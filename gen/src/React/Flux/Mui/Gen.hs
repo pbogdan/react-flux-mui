@@ -65,6 +65,12 @@ generate = do
                 { muiModuleName = moduleName
                 , muiModuleComponentName = component ^. componentName
                 , muiModuleProps = props
+                , muiModuleExtraExtensions =
+                    resolveExtraExtensions . altLefts . view componentProps $
+                    component
+                , muiModuleExtraImports =
+                    resolveExtraImports . altLefts . view componentProps $
+                    component
                 }
           return (componentOutputFile component, module_)
       ret <-
@@ -199,6 +205,39 @@ resolveDefault prop =
               (TyObjectOf _) -> Nothing
               (TyShape _) -> Nothing
       in go (prop ^. propType)
+
+resolveExtraImport :: PropType TypeSimple -> [Text]
+resolveExtraImport TyBool =  []
+resolveExtraImport TyNumber =  []
+resolveExtraImport TyString = []
+resolveExtraImport (TySymbol _) =  []
+resolveExtraImport (TyEnum xs) = ["React.Flux.Mui.Types"]
+resolveExtraImport (TyUnion xs) =["React.Flux.Mui.Types"]
+resolveExtraImport (TyArrayOf _) = []
+resolveExtraImport (TyObjectOf _) = []
+resolveExtraImport (TyShape _) = []
+resolveExtraImport (TyNullable x) = resolveExtraImport x
+
+resolveExtraImports :: [Prop TypeSimple] -> [Text]
+resolveExtraImports =
+  sort . nub . concatMap (resolveExtraImport . view propType)
+
+resolveExtraExtension :: PropType TypeSimple -> [Text]
+resolveExtraExtension TyBool =  []
+resolveExtraExtension TyNumber =  []
+resolveExtraExtension TyString = []
+resolveExtraExtension (TySymbol _) =  []
+resolveExtraExtension (TyEnum _) = ["DataKinds"]
+resolveExtraExtension (TyUnion xs) =
+  "TypeOperators" : (concatMap resolveExtraExtension . altLefts $ xs)
+resolveExtraExtension (TyArrayOf _) = []
+resolveExtraExtension (TyObjectOf _) = []
+resolveExtraExtension (TyShape _) = []
+resolveExtraExtension (TyNullable x) = resolveExtraExtension x
+
+resolveExtraExtensions :: [Prop TypeSimple] -> [Text]
+resolveExtraExtensions =
+  sort . nub . concatMap (resolveExtraExtension . view propType)
 
 -- | How do you know the string within the string is a string? It's because it's
 -- enclosed within single quotes.. (╯°□°）╯︵ ┻━┻

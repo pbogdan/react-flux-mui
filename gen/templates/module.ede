@@ -1,7 +1,8 @@
-{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeOperators #-}
+{% for ext in muiModuleExtraExtensions %}
+{-# LANGUAGE {{ ext.value }} #-}
+{% endfor %}
 
 module {{ muiModuleName }} where
 
@@ -11,8 +12,10 @@ import Data.Aeson
 import Data.Aeson.Casing
 import Data.String (String)
 import React.Flux
-import React.Flux.Mui.Types
 import React.Flux.Mui.Util
+{% for imp in muiModuleExtraImports %}
+import {{ imp.value }}
+{% endfor %}
 
 data {{ muiModuleComponentName }} = {{ muiModuleComponentName }} {
 {% for prop in muiModuleProps %}
