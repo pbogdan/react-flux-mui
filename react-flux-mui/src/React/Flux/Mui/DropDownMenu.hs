@@ -11,37 +11,34 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data DropDownMenu = DropDownMenu {
-    dropDownMenuAnimated :: !(Maybe Bool)
-    , dropDownMenuAutoWidth :: !(Maybe Bool)
-    , dropDownMenuClassName :: !(Maybe Text)
-    , dropDownMenuDisabled :: !(Maybe Bool)
-    , dropDownMenuMaxHeight :: !(Maybe Integer)
-    , dropDownMenuOpenImmediately :: !(Maybe Bool)
-} deriving (Generic, Show)
+data DropDownMenu = DropDownMenu
+  { dropDownMenuAnimated :: !(Maybe Bool)
+  , dropDownMenuAutoWidth :: !(Maybe Bool)
+  , dropDownMenuClassName :: !(Maybe Text)
+  , dropDownMenuDisabled :: !(Maybe Bool)
+  , dropDownMenuMaxHeight :: !(Maybe Integer)
+  , dropDownMenuOpenImmediately :: !(Maybe Bool)
+  } deriving (Generic, Show)
 
 instance ToJSON DropDownMenu where
-  toJSON = genericToJSON $ aesonDrop (length ("DropDownMenu" :: String)) snakeCase
+  toJSON =
+    genericToJSON $ aesonDrop (length ("DropDownMenu" :: String)) snakeCase
 
-
-defDropDownMenu ::
- DropDownMenu
-defDropDownMenu  =
-  DropDownMenu {
-      dropDownMenuAnimated = Just True
-      , dropDownMenuAutoWidth = Just True
-      , dropDownMenuClassName = Nothing
-      , dropDownMenuDisabled = Just False
-      , dropDownMenuMaxHeight = Just 500
-      , dropDownMenuOpenImmediately = Just False
+defDropDownMenu :: DropDownMenu
+defDropDownMenu =
+  DropDownMenu
+  { dropDownMenuAnimated = Just True
+  , dropDownMenuAutoWidth = Just True
+  , dropDownMenuClassName = Nothing
+  , dropDownMenuDisabled = Just False
+  , dropDownMenuMaxHeight = Just 500
+  , dropDownMenuOpenImmediately = Just False
   }
 
 dropDownMenu_ ::
-  DropDownMenu ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     DropDownMenu
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 dropDownMenu_ args props =
-   foreign_
-   "DropDownMenu"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "DropDownMenu" (fromMaybe [] (toProps args) ++ props)

@@ -11,25 +11,21 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data MuiThemeProvider = MuiThemeProvider {
-} deriving (Generic, Show)
+data MuiThemeProvider = MuiThemeProvider
+  {
+  } deriving (Generic, Show)
 
 instance ToJSON MuiThemeProvider where
-  toJSON = genericToJSON $ aesonDrop (length ("MuiThemeProvider" :: String)) snakeCase
+  toJSON =
+    genericToJSON $ aesonDrop (length ("MuiThemeProvider" :: String)) snakeCase
 
-
-defMuiThemeProvider ::
- MuiThemeProvider
-defMuiThemeProvider  =
-  MuiThemeProvider {
-  }
+defMuiThemeProvider :: MuiThemeProvider
+defMuiThemeProvider = MuiThemeProvider {}
 
 muiThemeProvider_ ::
-  MuiThemeProvider ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     MuiThemeProvider
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 muiThemeProvider_ args props =
-   foreign_
-   "MuiThemeProvider"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "MuiThemeProvider" (fromMaybe [] (toProps args) ++ props)

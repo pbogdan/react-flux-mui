@@ -11,29 +11,23 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data ToolbarTitle = ToolbarTitle {
-    toolbarTitleClassName :: !(Maybe Text)
-    , toolbarTitleText :: !(Maybe Text)
-} deriving (Generic, Show)
+data ToolbarTitle = ToolbarTitle
+  { toolbarTitleClassName :: !(Maybe Text)
+  , toolbarTitleText :: !(Maybe Text)
+  } deriving (Generic, Show)
 
 instance ToJSON ToolbarTitle where
-  toJSON = genericToJSON $ aesonDrop (length ("ToolbarTitle" :: String)) snakeCase
+  toJSON =
+    genericToJSON $ aesonDrop (length ("ToolbarTitle" :: String)) snakeCase
 
-
-defToolbarTitle ::
- ToolbarTitle
-defToolbarTitle  =
-  ToolbarTitle {
-      toolbarTitleClassName = Nothing
-      , toolbarTitleText = Nothing
-  }
+defToolbarTitle :: ToolbarTitle
+defToolbarTitle =
+  ToolbarTitle {toolbarTitleClassName = Nothing, toolbarTitleText = Nothing}
 
 toolbarTitle_ ::
-  ToolbarTitle ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     ToolbarTitle
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 toolbarTitle_ args props =
-   foreign_
-   "ToolbarTitle"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "ToolbarTitle" (fromMaybe [] (toProps args) ++ props)

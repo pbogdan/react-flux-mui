@@ -11,33 +11,29 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data StepLabel = StepLabel {
-    stepLabelActive :: !(Maybe Bool)
-    , stepLabelCompleted :: !(Maybe Bool)
-    , stepLabelDisabled :: !(Maybe Bool)
-    , stepLabelLast :: !(Maybe Bool)
-} deriving (Generic, Show)
+data StepLabel = StepLabel
+  { stepLabelActive :: !(Maybe Bool)
+  , stepLabelCompleted :: !(Maybe Bool)
+  , stepLabelDisabled :: !(Maybe Bool)
+  , stepLabelLast :: !(Maybe Bool)
+  } deriving (Generic, Show)
 
 instance ToJSON StepLabel where
   toJSON = genericToJSON $ aesonDrop (length ("StepLabel" :: String)) snakeCase
 
-
-defStepLabel ::
- StepLabel
-defStepLabel  =
-  StepLabel {
-      stepLabelActive = Nothing
-      , stepLabelCompleted = Nothing
-      , stepLabelDisabled = Nothing
-      , stepLabelLast = Nothing
+defStepLabel :: StepLabel
+defStepLabel =
+  StepLabel
+  { stepLabelActive = Nothing
+  , stepLabelCompleted = Nothing
+  , stepLabelDisabled = Nothing
+  , stepLabelLast = Nothing
   }
 
 stepLabel_ ::
-  StepLabel ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     StepLabel
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 stepLabel_ args props =
-   foreign_
-   "StepLabel"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "StepLabel" (fromMaybe [] (toProps args) ++ props)

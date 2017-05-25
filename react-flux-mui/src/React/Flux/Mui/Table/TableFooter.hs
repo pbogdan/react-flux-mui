@@ -11,29 +11,24 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data TableFooter = TableFooter {
-    tableFooterAdjustForCheckbox :: !(Maybe Bool)
-    , tableFooterClassName :: !(Maybe Text)
-} deriving (Generic, Show)
+data TableFooter = TableFooter
+  { tableFooterAdjustForCheckbox :: !(Maybe Bool)
+  , tableFooterClassName :: !(Maybe Text)
+  } deriving (Generic, Show)
 
 instance ToJSON TableFooter where
-  toJSON = genericToJSON $ aesonDrop (length ("TableFooter" :: String)) snakeCase
+  toJSON =
+    genericToJSON $ aesonDrop (length ("TableFooter" :: String)) snakeCase
 
-
-defTableFooter ::
- TableFooter
-defTableFooter  =
-  TableFooter {
-      tableFooterAdjustForCheckbox = Just True
-      , tableFooterClassName = Nothing
-  }
+defTableFooter :: TableFooter
+defTableFooter =
+  TableFooter
+  {tableFooterAdjustForCheckbox = Just True, tableFooterClassName = Nothing}
 
 tableFooter_ ::
-  TableFooter ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     TableFooter
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 tableFooter_ args props =
-   foreign_
-   "TableFooter"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "TableFooter" (fromMaybe [] (toProps args) ++ props)

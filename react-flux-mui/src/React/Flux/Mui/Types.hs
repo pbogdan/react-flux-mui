@@ -30,7 +30,7 @@ type family Member n xs :: Constraint where
   Member n xs = 'True ~ IsOneOf n xs
 
 data MuiNatEnum (xs :: [Nat]) where
-        MuiNatEnum :: (KnownNat n, Member n xs) => Proxy n -> MuiNatEnum xs
+  MuiNatEnum :: (KnownNat n, Member n xs) => Proxy n -> MuiNatEnum xs
 
 deriving instance Show (MuiNatEnum xs)
 
@@ -38,20 +38,20 @@ instance ToJSON (MuiNatEnum xs) where
   toJSON (MuiNatEnum n) = Number . fromIntegral . natVal $ n
 
 data MuiSymbolEnum (xs :: [Symbol]) where
-        MuiSymbolEnum ::
-            (KnownSymbol s, Member s xs) => Proxy s -> MuiSymbolEnum xs
+  MuiSymbolEnum :: (KnownSymbol s, Member s xs) => Proxy s -> MuiSymbolEnum xs
 
 deriving instance Show (MuiSymbolEnum xs)
 
 instance ToJSON (MuiSymbolEnum xs) where
   toJSON (MuiSymbolEnum s) = String . toS . symbolVal $ s
 
-data a :|: b = AltLeft  a
-             | AltRight b
-  deriving(Show,Eq,Ord)
+data a :|: b
+  = AltLeft a
+  | AltRight b
+  deriving (Show, Eq, Ord)
 
 infixr 5 :|:
 
 instance (ToJSON a, ToJSON b) => ToJSON (a :|: b) where
-    toJSON (AltLeft  a) = toJSON a
-    toJSON (AltRight b) = toJSON b
+  toJSON (AltLeft a) = toJSON a
+  toJSON (AltRight b) = toJSON b

@@ -11,37 +11,32 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data Menu = Menu {
-    menuAutoWidth :: !(Maybe Bool)
-    , menuDesktop :: !(Maybe Bool)
-    , menuDisableAutoFocus :: !(Maybe Bool)
-    , menuInitiallyKeyboardFocused :: !(Maybe Bool)
-    , menuMaxHeight :: !(Maybe Integer)
-    , menuMultiple :: !(Maybe Bool)
-} deriving (Generic, Show)
+data Menu = Menu
+  { menuAutoWidth :: !(Maybe Bool)
+  , menuDesktop :: !(Maybe Bool)
+  , menuDisableAutoFocus :: !(Maybe Bool)
+  , menuInitiallyKeyboardFocused :: !(Maybe Bool)
+  , menuMaxHeight :: !(Maybe Integer)
+  , menuMultiple :: !(Maybe Bool)
+  } deriving (Generic, Show)
 
 instance ToJSON Menu where
   toJSON = genericToJSON $ aesonDrop (length ("Menu" :: String)) snakeCase
 
-
-defMenu ::
- Menu
-defMenu  =
-  Menu {
-      menuAutoWidth = Just True
-      , menuDesktop = Just False
-      , menuDisableAutoFocus = Just False
-      , menuInitiallyKeyboardFocused = Just False
-      , menuMaxHeight = Nothing
-      , menuMultiple = Just False
+defMenu :: Menu
+defMenu =
+  Menu
+  { menuAutoWidth = Just True
+  , menuDesktop = Just False
+  , menuDisableAutoFocus = Just False
+  , menuInitiallyKeyboardFocused = Just False
+  , menuMaxHeight = Nothing
+  , menuMultiple = Just False
   }
 
 menu_ ::
-  Menu ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
-menu_ args props =
-   foreign_
-   "Menu"
-   (fromMaybe [] (toProps args) ++ props)
+     Menu
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
+menu_ args props = foreign_ "Menu" (fromMaybe [] (toProps args) ++ props)

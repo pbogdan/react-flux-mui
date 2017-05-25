@@ -11,25 +11,19 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data List = List {
-} deriving (Generic, Show)
+data List = List
+  {
+  } deriving (Generic, Show)
 
 instance ToJSON List where
   toJSON = genericToJSON $ aesonDrop (length ("List" :: String)) snakeCase
 
-
-defList ::
- List
-defList  =
-  List {
-  }
+defList :: List
+defList = List {}
 
 list_ ::
-  List ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
-list_ args props =
-   foreign_
-   "List"
-   (fromMaybe [] (toProps args) ++ props)
+     List
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
+list_ args props = foreign_ "List" (fromMaybe [] (toProps args) ++ props)

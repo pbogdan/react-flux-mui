@@ -11,29 +11,22 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data CardMedia = CardMedia {
-    cardMediaActAsExpander :: !(Maybe Bool)
-    , cardMediaExpandable :: !(Maybe Bool)
-} deriving (Generic, Show)
+data CardMedia = CardMedia
+  { cardMediaActAsExpander :: !(Maybe Bool)
+  , cardMediaExpandable :: !(Maybe Bool)
+  } deriving (Generic, Show)
 
 instance ToJSON CardMedia where
   toJSON = genericToJSON $ aesonDrop (length ("CardMedia" :: String)) snakeCase
 
-
-defCardMedia ::
- CardMedia
-defCardMedia  =
-  CardMedia {
-      cardMediaActAsExpander = Nothing
-      , cardMediaExpandable = Nothing
-  }
+defCardMedia :: CardMedia
+defCardMedia =
+  CardMedia {cardMediaActAsExpander = Nothing, cardMediaExpandable = Nothing}
 
 cardMedia_ ::
-  CardMedia ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     CardMedia
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 cardMedia_ args props =
-   foreign_
-   "CardMedia"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "CardMedia" (fromMaybe [] (toProps args) ++ props)

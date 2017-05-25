@@ -11,31 +11,28 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data CardActions = CardActions {
-    cardActionsActAsExpander :: !(Maybe Bool)
-    , cardActionsExpandable :: !(Maybe Bool)
-    , cardActionsShowExpandableButton :: !(Maybe Bool)
-} deriving (Generic, Show)
+data CardActions = CardActions
+  { cardActionsActAsExpander :: !(Maybe Bool)
+  , cardActionsExpandable :: !(Maybe Bool)
+  , cardActionsShowExpandableButton :: !(Maybe Bool)
+  } deriving (Generic, Show)
 
 instance ToJSON CardActions where
-  toJSON = genericToJSON $ aesonDrop (length ("CardActions" :: String)) snakeCase
+  toJSON =
+    genericToJSON $ aesonDrop (length ("CardActions" :: String)) snakeCase
 
-
-defCardActions ::
- CardActions
-defCardActions  =
-  CardActions {
-      cardActionsActAsExpander = Nothing
-      , cardActionsExpandable = Nothing
-      , cardActionsShowExpandableButton = Nothing
+defCardActions :: CardActions
+defCardActions =
+  CardActions
+  { cardActionsActAsExpander = Nothing
+  , cardActionsExpandable = Nothing
+  , cardActionsShowExpandableButton = Nothing
   }
 
 cardActions_ ::
-  CardActions ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     CardActions
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 cardActions_ args props =
-   foreign_
-   "CardActions"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "CardActions" (fromMaybe [] (toProps args) ++ props)

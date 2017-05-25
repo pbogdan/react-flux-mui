@@ -11,27 +11,21 @@ import Data.String (String)
 import React.Flux
 import React.Flux.Mui.Util
 
-data BottomNavigation = BottomNavigation {
-    bottomNavigationSelectedIndex :: !(Maybe Integer)
-} deriving (Generic, Show)
+data BottomNavigation = BottomNavigation
+  { bottomNavigationSelectedIndex :: !(Maybe Integer)
+  } deriving (Generic, Show)
 
 instance ToJSON BottomNavigation where
-  toJSON = genericToJSON $ aesonDrop (length ("BottomNavigation" :: String)) snakeCase
+  toJSON =
+    genericToJSON $ aesonDrop (length ("BottomNavigation" :: String)) snakeCase
 
-
-defBottomNavigation ::
- BottomNavigation
-defBottomNavigation  =
-  BottomNavigation {
-      bottomNavigationSelectedIndex = Nothing
-  }
+defBottomNavigation :: BottomNavigation
+defBottomNavigation = BottomNavigation {bottomNavigationSelectedIndex = Nothing}
 
 bottomNavigation_ ::
-  BottomNavigation ->
-  [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
-  ReactElementM handler ()
+     BottomNavigation
+  -> [PropertyOrHandler handler]
+  -> ReactElementM handler ()
+  -> ReactElementM handler ()
 bottomNavigation_ args props =
-   foreign_
-   "BottomNavigation"
-   (fromMaybe [] (toProps args) ++ props)
+  foreign_ "BottomNavigation" (fromMaybe [] (toProps args) ++ props)
