@@ -1,6 +1,6 @@
 #!/usr/bin/env nix-shell
 # -*- mode: shell-script; -*-
-#!nix-shell -i bash -p bash nodejs coreutils ag gnused haskellPackages.hindent
+#!nix-shell -i bash -p bash nodejs coreutils ag gnused haskellPackages.hindent closurecompiler
 
 set -e
 
@@ -9,6 +9,9 @@ cd ../react-flux-mui/js
 npm install
 npm install react-docgen
 ./node_modules/.bin/webpack
+
+closure-compiler react-flux-mui.js > react-flux-mui.min.js
+
 (cd material-ui && ../node_modules/.bin/react-docgen src/ > docgen.json)
 
 ag "exports\.[A-Z]" react-flux-mui.js \
