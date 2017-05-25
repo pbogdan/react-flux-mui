@@ -41,10 +41,10 @@ liftEither = either throwError return
 
 generate :: IO ()
 generate = do
-  s <- Bytes.readFile "../react-flux-mui/js/material-ui/material-ui/docgen.json"
+  s <- Bytes.readFile "../react-flux-mui/js/material-ui/docgen.json"
   exposedModules <-
     map toS . CharBytes.lines <$>
-    Bytes.readFile "../react-flux-mui/js/material-ui/module.list"
+    Bytes.readFile "../react-flux-mui/js/module.list"
   let componentsOrErr = eitherDecodeStrict s
   case componentsOrErr of
     Left _ -> undefined

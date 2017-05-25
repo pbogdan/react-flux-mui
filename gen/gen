@@ -5,12 +5,13 @@
 set -e
 
 pushd $PWD
-cd ../react-flux-mui/js/material-ui
+cd ../react-flux-mui/js
 npm install
+npm install react-docgen
 ./node_modules/.bin/webpack
 (cd material-ui && ../node_modules/.bin/react-docgen src/ > docgen.json)
 
-ag "exports\.[A-Z]" mui.js \
+ag "exports\.[A-Z]" react-flux-mui.js \
     | ag "[0-9]\.default" \
     | awk '{print $2 }' \
     | sed "s|exports\.||g" \
