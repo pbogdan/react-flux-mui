@@ -1,7 +1,5 @@
-{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TypeOperators #-}
 
 module React.Flux.Mui.Card.CardExpandable where
 
@@ -11,24 +9,29 @@ import Data.Aeson
 import Data.Aeson.Casing
 import Data.String (String)
 import React.Flux
-import React.Flux.Mui.Types
 import React.Flux.Mui.Util
 
-data CardExpandable = CardExpandable
-  { cardExpandableExpanded :: !(Maybe Bool)
-  } deriving (Generic, Show)
+data CardExpandable = CardExpandable {
+    cardExpandableExpanded :: !(Maybe Bool)
+} deriving (Generic, Show)
 
 instance ToJSON CardExpandable where
-  toJSON =
-    genericToJSON $ aesonDrop (length ("CardExpandable" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("CardExpandable" :: String)) snakeCase
 
-defCardExpandable :: CardExpandable
-defCardExpandable = CardExpandable {cardExpandableExpanded = Nothing}
+
+defCardExpandable ::
+ CardExpandable
+defCardExpandable  =
+  CardExpandable {
+      cardExpandableExpanded = Nothing
+  }
 
 cardExpandable_ ::
-     CardExpandable
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+  CardExpandable ->
+  [PropertyOrHandler handler] ->
+  ReactElementM handler () ->
+  ReactElementM handler ()
 cardExpandable_ args props =
-  foreign_ "CardExpandable" (fromMaybe [] (toProps args) ++ props)
+   foreign_
+   "CardExpandable"
+   (fromMaybe [] (toProps args) ++ props)
