@@ -26,3 +26,5 @@ TAGS
 result
 /react-flux-mui/js/node_modules
 /react-flux-mui/js/material-ui/node_modules
+/react-flux-mui/js/material-ui/docgen.json
+/react-flux-mui/js/module.list
