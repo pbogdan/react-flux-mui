@@ -1,0 +1,66 @@
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeOperators #-}
+
+module {{ muiModuleName }} where
+
+import Protolude
+
+import Data.Aeson
+import Data.Aeson.Casing
+import Data.String (String)
+import React.Flux
+import React.Flux.Mui.Types
+import React.Flux.Mui.Util
+
+data {{ muiModuleComponentName }} = {{ muiModuleComponentName }} {
+{% for prop in muiModuleProps %}
+  {% if prop.first %}
+    {{ prop.value.muiPropName }} :: {{ prop.value.muiPropSig }}
+  {% else %}
+    , {{ prop.value.muiPropName }} :: {{ prop.value.muiPropSig }}
+  {% endif %}
+{% endfor %}
+} deriving (Generic, Show)
+
+instance ToJSON {{ muiModuleComponentName }} where
+  toJSON = genericToJSON $ aesonDrop (length ("{{ muiModuleComponentName }}" :: String)) snakeCase
+
+
+def{{ muiModuleComponentName|toPascal }} ::
+{% for prop in muiModuleProps %}
+  {% if prop.value.muiPropDefault %}
+  {% else %}
+    {{ prop.value.muiPropArgSig }} ->
+  {% endif %}
+{% endfor %}
+ {{ muiModuleComponentName }}
+def{{ muiModuleComponentName|toPascal }} {% for prop in muiModuleProps %}{% if prop.value.muiPropDefault %}{% else %}{{ prop.value.muiPropName }}_ {% endif %}{% endfor %} =
+  {{ muiModuleComponentName }} {
+  {% for def in muiModuleProps %}
+  {% if def.value.muiPropDefault %}
+    {% if def.first %}
+      {{ def.value.muiPropName }} = {{ def.value.muiPropDefault }}
+    {% else %}
+      , {{ def.value.muiPropName }} = {{ def.value.muiPropDefault }}
+    {% endif %}
+  {% else %}
+    {% if def.first %}
+      {{ def.value.muiPropName }} = {{ def.value.muiPropName }}_
+    {% else %}
+      , {{ def.value.muiPropName }} = {{ def.value.muiPropName }}_
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+  }
+
+{{ muiModuleComponentName|toCamel }}_ ::
+  {{ muiModuleComponentName }} ->
+  [PropertyOrHandler handler] ->
+  ReactElementM handler () ->
+  ReactElementM handler ()
+{{ muiModuleComponentName|toCamel }}_ args props =
+   foreign_
+   "{{ muiModuleComponentName }}"
+   (fromMaybe [] (toProps args) ++ props)

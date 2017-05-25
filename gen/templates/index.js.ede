@@ -1,0 +1,7 @@
+window.MaterialUI = require("material-ui");
+window.React = require("react");
+window.ReactDOM = require("react-dom");
+
+{% for prop in props %}
+window.{{ prop.key }} = window.{{ prop.value }}
+{% endfor %}

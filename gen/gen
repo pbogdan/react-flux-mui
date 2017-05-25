@@ -1,0 +1,32 @@
+#!/usr/bin/env nix-shell
+# -*- mode: shell-script; -*-
+#!nix-shell -i bash -p bash nodejs coreutils ag gnused haskellPackages.hindent
+
+set -e
+
+pushd $PWD
+cd ../react-flux-mui/js/material-ui
+npm install
+./node_modules/.bin/webpack
+(cd material-ui && ../node_modules/.bin/react-docgen src/ > docgen.json)
+
+ag "exports\.[A-Z]" mui.js \
+    | ag "[0-9]\.default" \
+    | awk '{print $2 }' \
+    | sed "s|exports\.||g" \
+    | sort \
+    | uniq > module.list
+
+popd
+
+pushd $PWD
+cd ../react-flux-mui/js/
+npm install
+./node_modules/.bin/webpack
+popd
+
+nix-build
+./result/bin/react-flux-mui-gen
+find ../react-flux-mui/src -name \*.hs -type f -exec hindent '{}' ';'
+
+

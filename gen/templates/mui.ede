@@ -1,0 +1,7 @@
+module React.Flux.Mui
+  ( module X
+  ) where
+
+{% for module in modules %}
+import {{ module.value }} as X
+{% endfor %}

@@ -1,0 +1,47 @@
+name: react-flux-mui-gen
+version: 0.1.0.0
+cabal-version: >=1.10
+build-type: Simple
+license: BSD3
+license-file: LICENSE
+maintainer: ppbogdan@gmail.com
+category: Web
+author: Piotr Bogdan
+extra-source-files:
+    ChangeLog.md
+
+library
+    exposed-modules:
+        React.Flux.Mui.Gen
+        React.Flux.Mui.Gen.Render
+        React.Flux.Mui.Gen.Types
+    build-depends:
+        base >=4.9 && <4.10,
+        protolude -any,
+        react-docgen-types -any,
+        bytestring -any,
+        lens -any,
+        text -any,
+        unordered-containers -any,
+        ede -any,
+        aeson -any,
+        directory -any,
+        mtl -any,
+        typelits-witnesses -any,
+        reflection -any
+    default-language: Haskell2010
+    default-extensions: OverloadedStrings NoImplicitPrelude
+    hs-source-dirs: src
+    ghc-options: -Wall
+
+executable react-flux-mui-gen
+    main-is: Main.hs
+    build-depends:
+        base -any,
+        react-flux-mui-gen -any,
+        protolude >=0.1.6 && <0.2
+    default-language: Haskell2010
+    default-extensions: OverloadedStrings NoImplicitPrelude
+    hs-source-dirs: app
+    ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+
