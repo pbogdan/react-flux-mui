@@ -1,6 +1,11 @@
 module React.Flux.Mui
   ( module X
+  , muiThemeWrapper_
   ) where
+
+import Protolude
+
+import React.Flux
 
 import React.Flux.Mui.AppBar as X
 import React.Flux.Mui.AutoComplete as X
@@ -71,3 +76,7 @@ import React.Flux.Mui.Toolbar.ToolbarSeparator as X
 import React.Flux.Mui.Toolbar.ToolbarTitle as X
 import React.Flux.Mui.Types as X
 import React.Flux.Mui.Util as X
+
+muiThemeWrapper_ ::
+     ReactElementM eventHandler () -> ReactElementM eventHandler ()
+muiThemeWrapper_ xs = muiThemeProvider_ defMuiThemeProvider mempty $ div_ xs

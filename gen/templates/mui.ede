@@ -1,7 +1,16 @@
 module React.Flux.Mui
   ( module X
+  , muiThemeWrapper_
   ) where
+
+import Protolude
+
+import React.Flux
 
 {% for module in modules %}
 import {{ module.value }} as X
 {% endfor %}
+
+muiThemeWrapper_ ::
+     ReactElementM eventHandler () -> ReactElementM eventHandler ()
+muiThemeWrapper_ xs = muiThemeProvider_ defMuiThemeProvider mempty $ div_ xs
