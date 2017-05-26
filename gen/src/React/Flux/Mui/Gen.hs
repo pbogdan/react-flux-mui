@@ -197,9 +197,33 @@ resolveDefault prop =
                   Just v ->
                     case v of
                       "Nothing" -> Just "Nothing"
-                      _ -> Just $ "Just " <> v
+                      s ->
+                        Just $
+                        "Just " <>
+                        (if Text.any (== ' ') s
+                           then parenthesise s
+                           else s)
                   Nothing -> Nothing
-              (TyEnum _) -> Nothing
+              (TyEnum xs) ->
+                case () of
+                  ()
+                    | areStringsStringy xs ->
+                      case val of
+                        String s ->
+                          Just $
+                          "MuiSymbolEnum (Proxy :: Proxy " <>
+                          show (fromStringyString s) <>
+                          ")"
+                        _ -> Nothing
+                    | areStringsNumbery xs ->
+                      case val of
+                        String s ->
+                          let maybeInt = readMaybe @Int . toS $ s
+                          in (\x ->
+                                "MuiNatEnum (Proxy :: Proxy " <> show x <> ")") <$>
+                             maybeInt
+                        _ -> Nothing
+                    | otherwise -> Nothing
               (TyUnion _) -> Nothing
               (TyArrayOf _) -> Nothing
               (TyObjectOf _) -> Nothing
