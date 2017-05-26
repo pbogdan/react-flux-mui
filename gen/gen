@@ -5,15 +5,19 @@
 set -e
 
 pushd $PWD
+echo "Building JavasScript dependencies ..."
 cd ../react-flux-mui/js
-npm install
-npm install react-docgen
-./node_modules/.bin/webpack
+npm install > /dev/null 2>&1
+npm install react-docgen > /dev/null 2>&1
+./node_modules/.bin/webpack > /dev/null  2>&1
 
-closure-compiler react-flux-mui.js > react-flux-mui.min.js
+echo "Minifying react-flux-mui.js ..."
+closure-compiler react-flux-mui.js 2>/dev/null 1> react-flux-mui.min.js
 
-(cd material-ui && ../node_modules/.bin/react-docgen src/ > docgen.json)
+echo "Running react-docgen ..."
+(cd material-ui && ../node_modules/.bin/react-docgen src/ 2>/dev/null 1> docgen.json)
 
+echo "Searching for exposed modules ..."
 ag "exports\.[A-Z]" react-flux-mui.js \
     | ag "[0-9]\.default" \
     | awk '{print $2 }' \
@@ -23,14 +27,11 @@ ag "exports\.[A-Z]" react-flux-mui.js \
 
 popd
 
-pushd $PWD
-cd ../react-flux-mui/js/
-npm install
-./node_modules/.bin/webpack
-popd
-
+echo "Building generator ..."
 nix-build
+echo "Generating code ..."
 ./result/bin/react-flux-mui-gen
+echo "Running hindent on generated sources ..."
 find ../react-flux-mui/src -name \*.hs -type f -exec hindent '{}' ';'
 
 
