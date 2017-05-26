@@ -37,5 +37,5 @@ $ ./gen
 
 - [x] clean up the output of the generator to ensure the generated code doesn't produce any compilation warnings
 - [ ] clean up the code of the generator itself
-- [ ] create a wrapper function for the components to set up a theme provider
+- [x] create a wrapper function for the components to set up a theme provider
 - [ ] provide documentation on the usage of the library and possibly for the generated code
