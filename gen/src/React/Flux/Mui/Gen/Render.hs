@@ -63,7 +63,8 @@ renderMainModule
 renderMainModule path modules = do
   let muiModules =
         sort
-          ("React.Flux.Mui.Util" : map (unModuleName . muiModuleName) modules)
+          ("React.Flux.Mui.Util" :
+           "React.Flux.Mui.Types" : map (unModuleName . muiModuleName) modules)
       Just env =
         fromValue . toJSON . HashMap.fromList $
         [("modules" :: Text, muiModules)]

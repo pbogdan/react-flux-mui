@@ -69,4 +69,5 @@ import React.Flux.Mui.Toolbar as X
 import React.Flux.Mui.Toolbar.ToolbarGroup as X
 import React.Flux.Mui.Toolbar.ToolbarSeparator as X
 import React.Flux.Mui.Toolbar.ToolbarTitle as X
+import React.Flux.Mui.Types as X
 import React.Flux.Mui.Util as X
