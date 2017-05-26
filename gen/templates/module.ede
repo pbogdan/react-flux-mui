@@ -61,9 +61,16 @@ def{{ muiModuleComponentName|toPascal }} {% for prop in muiModuleProps %}{% if p
 {{ muiModuleComponentName|toCamel }}_ ::
   {{ muiModuleComponentName }} ->
   [PropertyOrHandler handler] ->
-  ReactElementM handler () ->
+  {% if muiModuleHasChildren %}
+    ReactElementM handler () ->
+  {% endif %}
   ReactElementM handler ()
 {{ muiModuleComponentName|toCamel }}_ args props =
    foreign_
    "{{ muiModuleComponentName }}"
    (fromMaybe [] (toProps args) ++ props)
+   {% if muiModuleHasChildren %}
+   {% else %}
+   mempty
+   {% endif %}
+

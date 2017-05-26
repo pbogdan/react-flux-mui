@@ -35,6 +35,7 @@ data MuiModule = MuiModule
   , muiModuleProps :: [MuiProp]
   , muiModuleExtraImports :: [Text]
   , muiModuleExtraExtensions :: [Text]
+  , muiModuleHasChildren :: Bool
   } deriving (Eq, Generic, Ord, Show)
 
 instance FromJSON MuiModule where

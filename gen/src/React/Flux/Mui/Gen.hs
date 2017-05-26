@@ -71,6 +71,12 @@ generate = do
                 , muiModuleExtraImports =
                     resolveExtraImports . altLefts . view componentProps $
                     component
+                , muiModuleHasChildren =
+                    getAny .
+                    mconcat .
+                    map (Any . (== "children") . view propName) .
+                    altRights . view componentProps $
+                    component
                 }
           return (componentOutputFile component, module_)
       ret <-
