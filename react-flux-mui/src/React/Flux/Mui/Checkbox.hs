@@ -23,13 +23,13 @@ data Checkbox = Checkbox
 instance ToJSON Checkbox where
   toJSON = genericToJSON $ aesonDrop (length ("Checkbox" :: String)) camelCase
 
-defCheckbox :: (Maybe (MuiSymbolEnum '[ "left", "right"])) -> Checkbox
-defCheckbox checkboxLabelPosition_ =
+defCheckbox :: Checkbox
+defCheckbox =
   Checkbox
   { checkboxChecked = Nothing
   , checkboxDefaultChecked = Nothing
   , checkboxDisabled = Just False
-  , checkboxLabelPosition = checkboxLabelPosition_
+  , checkboxLabelPosition = Just (MuiSymbolEnum (Proxy :: Proxy "right"))
   }
 
 checkbox_ ::

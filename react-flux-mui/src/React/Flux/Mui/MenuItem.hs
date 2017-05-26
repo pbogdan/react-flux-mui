@@ -24,15 +24,13 @@ data MenuItem = MenuItem
 instance ToJSON MenuItem where
   toJSON = genericToJSON $ aesonDrop (length ("MenuItem" :: String)) camelCase
 
-defMenuItem ::
-     (Maybe (MuiSymbolEnum '[ "none", "focused", "keyboard-focused"]))
-  -> MenuItem
-defMenuItem menuItemFocusState_ =
+defMenuItem :: MenuItem
+defMenuItem =
   MenuItem
   { menuItemChecked = Just False
   , menuItemDesktop = Just False
   , menuItemDisabled = Just False
-  , menuItemFocusState = menuItemFocusState_
+  , menuItemFocusState = Just (MuiSymbolEnum (Proxy :: Proxy "none"))
   , menuItemInsetChildren = Just False
   }
 

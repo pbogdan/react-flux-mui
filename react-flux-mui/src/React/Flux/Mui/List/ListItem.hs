@@ -29,8 +29,8 @@ data ListItem = ListItem
 instance ToJSON ListItem where
   toJSON = genericToJSON $ aesonDrop (length ("ListItem" :: String)) camelCase
 
-defListItem :: (Maybe (MuiNatEnum '[ 1, 2])) -> ListItem
-defListItem listItemSecondaryTextLines_ =
+defListItem :: ListItem
+defListItem =
   ListItem
   { listItemAutoGenerateNestedIndicator = Just True
   , listItemDisableKeyboardFocus = Just False
@@ -41,7 +41,7 @@ defListItem listItemSecondaryTextLines_ =
   , listItemNestedLevel = Just 0
   , listItemOpen = Nothing
   , listItemPrimaryTogglesNestedList = Just False
-  , listItemSecondaryTextLines = listItemSecondaryTextLines_
+  , listItemSecondaryTextLines = Just (MuiNatEnum (Proxy :: Proxy 1))
   }
 
 listItem_ ::

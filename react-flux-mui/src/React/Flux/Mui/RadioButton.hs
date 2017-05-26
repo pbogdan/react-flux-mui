@@ -23,12 +23,12 @@ instance ToJSON RadioButton where
   toJSON =
     genericToJSON $ aesonDrop (length ("RadioButton" :: String)) camelCase
 
-defRadioButton :: (Maybe (MuiSymbolEnum '[ "left", "right"])) -> RadioButton
-defRadioButton radioButtonLabelPosition_ =
+defRadioButton :: RadioButton
+defRadioButton =
   RadioButton
   { radioButtonChecked = Just False
   , radioButtonDisabled = Just False
-  , radioButtonLabelPosition = radioButtonLabelPosition_
+  , radioButtonLabelPosition = Just (MuiSymbolEnum (Proxy :: Proxy "right"))
   }
 
 radioButton_ ::

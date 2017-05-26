@@ -27,16 +27,13 @@ instance ToJSON CircularProgress where
   toJSON =
     genericToJSON $ aesonDrop (length ("CircularProgress" :: String)) camelCase
 
-defCircularProgress ::
-     (Maybe (MuiSymbolEnum '[ "determinate", "indeterminate"]))
-  -> (Maybe Integer)
-  -> CircularProgress
-defCircularProgress circularProgressMode_ circularProgressThickness_ =
+defCircularProgress :: (Maybe Integer) -> CircularProgress
+defCircularProgress circularProgressThickness_ =
   CircularProgress
   { circularProgressColor = Nothing
   , circularProgressMax = Just 100
   , circularProgressMin = Just 0
-  , circularProgressMode = circularProgressMode_
+  , circularProgressMode = Just (MuiSymbolEnum (Proxy :: Proxy "indeterminate"))
   , circularProgressSize = Just 40
   , circularProgressThickness = circularProgressThickness_
   , circularProgressValue = Just 0

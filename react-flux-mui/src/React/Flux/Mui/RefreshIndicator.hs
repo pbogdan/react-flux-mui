@@ -27,19 +27,15 @@ instance ToJSON RefreshIndicator where
   toJSON =
     genericToJSON $ aesonDrop (length ("RefreshIndicator" :: String)) camelCase
 
-defRefreshIndicator ::
-     Integer
-  -> (Maybe (MuiSymbolEnum '[ "ready", "loading", "hide"]))
-  -> Integer
-  -> RefreshIndicator
-defRefreshIndicator refreshIndicatorLeft_ refreshIndicatorStatus_ refreshIndicatorTop_ =
+defRefreshIndicator :: Integer -> Integer -> RefreshIndicator
+defRefreshIndicator refreshIndicatorLeft_ refreshIndicatorTop_ =
   RefreshIndicator
   { refreshIndicatorColor = Nothing
   , refreshIndicatorLeft = refreshIndicatorLeft_
   , refreshIndicatorLoadingColor = Nothing
   , refreshIndicatorPercentage = Just 0
   , refreshIndicatorSize = Just 40
-  , refreshIndicatorStatus = refreshIndicatorStatus_
+  , refreshIndicatorStatus = Just (MuiSymbolEnum (Proxy :: Proxy "hide"))
   , refreshIndicatorTop = refreshIndicatorTop_
   }
 

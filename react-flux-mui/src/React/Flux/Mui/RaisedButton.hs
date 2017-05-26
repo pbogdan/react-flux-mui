@@ -31,8 +31,8 @@ instance ToJSON RaisedButton where
   toJSON =
     genericToJSON $ aesonDrop (length ("RaisedButton" :: String)) camelCase
 
-defRaisedButton :: (Maybe (MuiSymbolEnum '[ "before", "after"])) -> RaisedButton
-defRaisedButton raisedButtonLabelPosition_ =
+defRaisedButton :: RaisedButton
+defRaisedButton =
   RaisedButton
   { raisedButtonBackgroundColor = Nothing
   , raisedButtonClassName = Nothing
@@ -42,7 +42,7 @@ defRaisedButton raisedButtonLabelPosition_ =
   , raisedButtonFullWidth = Just False
   , raisedButtonHref = Nothing
   , raisedButtonLabelColor = Nothing
-  , raisedButtonLabelPosition = raisedButtonLabelPosition_
+  , raisedButtonLabelPosition = Just (MuiSymbolEnum (Proxy :: Proxy "after"))
   , raisedButtonPrimary = Just False
   , raisedButtonSecondary = Just False
   }

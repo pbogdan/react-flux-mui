@@ -25,15 +25,13 @@ instance ToJSON LinearProgress where
   toJSON =
     genericToJSON $ aesonDrop (length ("LinearProgress" :: String)) camelCase
 
-defLinearProgress ::
-     (Maybe (MuiSymbolEnum '[ "determinate", "indeterminate"]))
-  -> LinearProgress
-defLinearProgress linearProgressMode_ =
+defLinearProgress :: LinearProgress
+defLinearProgress =
   LinearProgress
   { linearProgressColor = Nothing
   , linearProgressMax = Just 100
   , linearProgressMin = Just 0
-  , linearProgressMode = linearProgressMode_
+  , linearProgressMode = Just (MuiSymbolEnum (Proxy :: Proxy "indeterminate"))
   , linearProgressValue = Just 0
   }
 

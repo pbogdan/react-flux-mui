@@ -27,12 +27,12 @@ data DatePicker = DatePicker
 instance ToJSON DatePicker where
   toJSON = genericToJSON $ aesonDrop (length ("DatePicker" :: String)) camelCase
 
-defDatePicker :: (Maybe (MuiSymbolEnum '[ "dialog", "inline"])) -> DatePicker
-defDatePicker datePickerContainer_ =
+defDatePicker :: DatePicker
+defDatePicker =
   DatePicker
   { datePickerAutoOk = Just False
   , datePickerClassName = Nothing
-  , datePickerContainer = datePickerContainer_
+  , datePickerContainer = Just (MuiSymbolEnum (Proxy :: Proxy "dialog"))
   , datePickerDisableYearSelection = Just False
   , datePickerDisabled = Just False
   , datePickerFirstDayOfWeek = Just 1

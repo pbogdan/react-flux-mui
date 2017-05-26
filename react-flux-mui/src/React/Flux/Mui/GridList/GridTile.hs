@@ -24,17 +24,14 @@ data GridTile = GridTile
 instance ToJSON GridTile where
   toJSON = genericToJSON $ aesonDrop (length ("GridTile" :: String)) camelCase
 
-defGridTile ::
-     (Maybe (MuiSymbolEnum '[ "left", "right"]))
-  -> (Maybe (MuiSymbolEnum '[ "top", "bottom"]))
-  -> GridTile
-defGridTile gridTileActionPosition_ gridTileTitlePosition_ =
+defGridTile :: GridTile
+defGridTile =
   GridTile
-  { gridTileActionPosition = gridTileActionPosition_
+  { gridTileActionPosition = Just (MuiSymbolEnum (Proxy :: Proxy "right"))
   , gridTileCols = Just 1
   , gridTileRows = Just 1
-  , gridTileTitleBackground = Just "rgba(0, 0, 0, 0.4)"
-  , gridTileTitlePosition = gridTileTitlePosition_
+  , gridTileTitleBackground = Just ("rgba(0, 0, 0, 0.4)")
+  , gridTileTitlePosition = Just (MuiSymbolEnum (Proxy :: Proxy "bottom"))
   }
 
 gridTile_ ::

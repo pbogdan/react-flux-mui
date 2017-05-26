@@ -27,14 +27,14 @@ data FlatButton = FlatButton
 instance ToJSON FlatButton where
   toJSON = genericToJSON $ aesonDrop (length ("FlatButton" :: String)) camelCase
 
-defFlatButton :: (Maybe (MuiSymbolEnum '[ "before", "after"])) -> FlatButton
-defFlatButton flatButtonLabelPosition_ =
+defFlatButton :: FlatButton
+defFlatButton =
   FlatButton
   { flatButtonBackgroundColor = Nothing
   , flatButtonDisabled = Just False
   , flatButtonHoverColor = Nothing
   , flatButtonHref = Nothing
-  , flatButtonLabelPosition = flatButtonLabelPosition_
+  , flatButtonLabelPosition = Just (MuiSymbolEnum (Proxy :: Proxy "after"))
   , flatButtonPrimary = Just False
   , flatButtonRippleColor = Nothing
   , flatButtonSecondary = Just False

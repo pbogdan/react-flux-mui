@@ -23,12 +23,12 @@ data Toggle = Toggle
 instance ToJSON Toggle where
   toJSON = genericToJSON $ aesonDrop (length ("Toggle" :: String)) camelCase
 
-defToggle :: (Maybe (MuiSymbolEnum '[ "left", "right"])) -> Toggle
-defToggle toggleLabelPosition_ =
+defToggle :: Toggle
+defToggle =
   Toggle
   { toggleDefaultToggled = Just False
   , toggleDisabled = Just False
-  , toggleLabelPosition = toggleLabelPosition_
+  , toggleLabelPosition = Just (MuiSymbolEnum (Proxy :: Proxy "left"))
   , toggleToggled = Nothing
   }
 

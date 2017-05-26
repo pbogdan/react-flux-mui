@@ -23,12 +23,12 @@ data TimePicker = TimePicker
 instance ToJSON TimePicker where
   toJSON = genericToJSON $ aesonDrop (length ("TimePicker" :: String)) camelCase
 
-defTimePicker :: (Maybe (MuiSymbolEnum '[ "ampm", "24hr"])) -> TimePicker
-defTimePicker timePickerFormat_ =
+defTimePicker :: TimePicker
+defTimePicker =
   TimePicker
   { timePickerAutoOk = Just False
   , timePickerDisabled = Just False
-  , timePickerFormat = timePickerFormat_
+  , timePickerFormat = Just (MuiSymbolEnum (Proxy :: Proxy "ampm"))
   , timePickerPedantic = Just False
   }
 

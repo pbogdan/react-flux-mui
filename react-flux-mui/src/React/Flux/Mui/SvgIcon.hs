@@ -25,7 +25,7 @@ defSvgIcon =
   SvgIcon
   { svgIconColor = Nothing
   , svgIconHoverColor = Nothing
-  , svgIconViewBox = Just "0 0 24 24"
+  , svgIconViewBox = Just ("0 0 24 24")
   }
 
 svgIcon_ ::

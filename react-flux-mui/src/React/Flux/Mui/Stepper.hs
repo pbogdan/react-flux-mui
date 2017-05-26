@@ -22,12 +22,12 @@ data Stepper = Stepper
 instance ToJSON Stepper where
   toJSON = genericToJSON $ aesonDrop (length ("Stepper" :: String)) camelCase
 
-defStepper :: (Maybe (MuiSymbolEnum '[ "horizontal", "vertical"])) -> Stepper
-defStepper stepperOrientation_ =
+defStepper :: Stepper
+defStepper =
   Stepper
   { stepperActiveStep = Nothing
   , stepperLinear = Just True
-  , stepperOrientation = stepperOrientation_
+  , stepperOrientation = Just (MuiSymbolEnum (Proxy :: Proxy "horizontal"))
   }
 
 stepper_ ::

@@ -25,13 +25,10 @@ data Slider = Slider
 instance ToJSON Slider where
   toJSON = genericToJSON $ aesonDrop (length ("Slider" :: String)) camelCase
 
-defSlider ::
-     (Maybe (MuiSymbolEnum '[ "x", "x-reverse", "y", "y-reverse"]))
-  -> (Maybe Integer)
-  -> Slider
-defSlider sliderAxis_ sliderStep_ =
+defSlider :: (Maybe Integer) -> Slider
+defSlider sliderStep_ =
   Slider
-  { sliderAxis = sliderAxis_
+  { sliderAxis = Just (MuiSymbolEnum (Proxy :: Proxy "x"))
   , sliderDisableFocusRipple = Just False
   , sliderDisabled = Just False
   , sliderName = Nothing
