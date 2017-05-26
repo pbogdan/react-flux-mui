@@ -28,7 +28,7 @@ data {{ muiModuleComponentName }} = {{ muiModuleComponentName }} {
 } deriving (Generic, Show)
 
 instance ToJSON {{ muiModuleComponentName }} where
-  toJSON = genericToJSON $ aesonDrop (length ("{{ muiModuleComponentName }}" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("{{ muiModuleComponentName }}" :: String)) camelCase
 
 
 def{{ muiModuleComponentName|toPascal }} ::
