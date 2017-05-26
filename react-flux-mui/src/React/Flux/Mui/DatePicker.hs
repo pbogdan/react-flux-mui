@@ -41,9 +41,6 @@ defDatePicker =
   }
 
 datePicker_ ::
-     DatePicker
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     DatePicker -> [PropertyOrHandler handler] -> ReactElementM handler ()
 datePicker_ args props =
-  foreign_ "DatePicker" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "DatePicker" (fromMaybe [] (toProps args) ++ props) mempty

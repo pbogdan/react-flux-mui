@@ -40,9 +40,6 @@ defCircularProgress circularProgressThickness_ =
   }
 
 circularProgress_ ::
-     CircularProgress
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     CircularProgress -> [PropertyOrHandler handler] -> ReactElementM handler ()
 circularProgress_ args props =
-  foreign_ "CircularProgress" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "CircularProgress" (fromMaybe [] (toProps args) ++ props) mempty

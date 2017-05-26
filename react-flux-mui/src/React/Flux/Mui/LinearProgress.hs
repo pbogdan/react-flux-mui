@@ -36,9 +36,6 @@ defLinearProgress =
   }
 
 linearProgress_ ::
-     LinearProgress
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     LinearProgress -> [PropertyOrHandler handler] -> ReactElementM handler ()
 linearProgress_ args props =
-  foreign_ "LinearProgress" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "LinearProgress" (fromMaybe [] (toProps args) ++ props) mempty

@@ -22,10 +22,6 @@ instance ToJSON FontIcon where
 defFontIcon :: FontIcon
 defFontIcon = FontIcon {fontIconColor = Nothing, fontIconHoverColor = Nothing}
 
-fontIcon_ ::
-     FontIcon
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+fontIcon_ :: FontIcon -> [PropertyOrHandler handler] -> ReactElementM handler ()
 fontIcon_ args props =
-  foreign_ "FontIcon" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "FontIcon" (fromMaybe [] (toProps args) ++ props) mempty

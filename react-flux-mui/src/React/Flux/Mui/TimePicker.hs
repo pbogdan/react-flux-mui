@@ -33,9 +33,6 @@ defTimePicker =
   }
 
 timePicker_ ::
-     TimePicker
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     TimePicker -> [PropertyOrHandler handler] -> ReactElementM handler ()
 timePicker_ args props =
-  foreign_ "TimePicker" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "TimePicker" (fromMaybe [] (toProps args) ++ props) mempty

@@ -23,9 +23,6 @@ defToolbarSeparator :: ToolbarSeparator
 defToolbarSeparator = ToolbarSeparator {toolbarSeparatorClassName = Nothing}
 
 toolbarSeparator_ ::
-     ToolbarSeparator
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     ToolbarSeparator -> [PropertyOrHandler handler] -> ReactElementM handler ()
 toolbarSeparator_ args props =
-  foreign_ "ToolbarSeparator" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "ToolbarSeparator" (fromMaybe [] (toProps args) ++ props) mempty

@@ -23,9 +23,6 @@ defCardExpandable :: CardExpandable
 defCardExpandable = CardExpandable {cardExpandableExpanded = Nothing}
 
 cardExpandable_ ::
-     CardExpandable
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     CardExpandable -> [PropertyOrHandler handler] -> ReactElementM handler ()
 cardExpandable_ args props =
-  foreign_ "CardExpandable" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "CardExpandable" (fromMaybe [] (toProps args) ++ props) mempty

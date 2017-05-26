@@ -23,9 +23,5 @@ instance ToJSON Tab where
 defTab :: Tab
 defTab = Tab {tabClassName = Nothing, tabSelected = Nothing, tabWidth = Nothing}
 
-tab_ ::
-     Tab
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
-tab_ args props = foreign_ "Tab" (fromMaybe [] (toProps args) ++ props)
+tab_ :: Tab -> [PropertyOrHandler handler] -> ReactElementM handler ()
+tab_ args props = foreign_ "Tab" (fromMaybe [] (toProps args) ++ props) mempty

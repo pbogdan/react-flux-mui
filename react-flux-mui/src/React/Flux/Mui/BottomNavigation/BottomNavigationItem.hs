@@ -27,6 +27,5 @@ bottomNavigationItem_ ::
      BottomNavigationItem
   -> [PropertyOrHandler handler]
   -> ReactElementM handler ()
-  -> ReactElementM handler ()
 bottomNavigationItem_ args props =
-  foreign_ "BottomNavigationItem" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "BottomNavigationItem" (fromMaybe [] (toProps args) ++ props) mempty

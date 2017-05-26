@@ -36,9 +36,6 @@ defSlider sliderStep_ =
   , sliderStep = sliderStep_
   }
 
-slider_ ::
-     Slider
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
-slider_ args props = foreign_ "Slider" (fromMaybe [] (toProps args) ++ props)
+slider_ :: Slider -> [PropertyOrHandler handler] -> ReactElementM handler ()
+slider_ args props =
+  foreign_ "Slider" (fromMaybe [] (toProps args) ++ props) mempty

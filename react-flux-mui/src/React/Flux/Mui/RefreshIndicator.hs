@@ -40,9 +40,6 @@ defRefreshIndicator refreshIndicatorLeft_ refreshIndicatorTop_ =
   }
 
 refreshIndicator_ ::
-     RefreshIndicator
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     RefreshIndicator -> [PropertyOrHandler handler] -> ReactElementM handler ()
 refreshIndicator_ args props =
-  foreign_ "RefreshIndicator" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "RefreshIndicator" (fromMaybe [] (toProps args) ++ props) mempty

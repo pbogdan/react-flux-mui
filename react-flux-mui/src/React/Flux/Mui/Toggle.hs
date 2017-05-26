@@ -32,9 +32,6 @@ defToggle =
   , toggleToggled = Nothing
   }
 
-toggle_ ::
-     Toggle
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
-toggle_ args props = foreign_ "Toggle" (fromMaybe [] (toProps args) ++ props)
+toggle_ :: Toggle -> [PropertyOrHandler handler] -> ReactElementM handler ()
+toggle_ args props =
+  foreign_ "Toggle" (fromMaybe [] (toProps args) ++ props) mempty

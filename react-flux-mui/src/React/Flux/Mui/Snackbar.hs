@@ -28,10 +28,6 @@ defSnackbar snackbarOpen_ =
   , snackbarOpen = snackbarOpen_
   }
 
-snackbar_ ::
-     Snackbar
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+snackbar_ :: Snackbar -> [PropertyOrHandler handler] -> ReactElementM handler ()
 snackbar_ args props =
-  foreign_ "Snackbar" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "Snackbar" (fromMaybe [] (toProps args) ++ props) mempty

@@ -32,9 +32,6 @@ defRadioButton =
   }
 
 radioButton_ ::
-     RadioButton
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     RadioButton -> [PropertyOrHandler handler] -> ReactElementM handler ()
 radioButton_ args props =
-  foreign_ "RadioButton" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "RadioButton" (fromMaybe [] (toProps args) ++ props) mempty

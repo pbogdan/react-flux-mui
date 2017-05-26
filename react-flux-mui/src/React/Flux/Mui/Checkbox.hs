@@ -32,10 +32,6 @@ defCheckbox =
   , checkboxLabelPosition = Just (MuiSymbolEnum (Proxy :: Proxy "right"))
   }
 
-checkbox_ ::
-     Checkbox
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+checkbox_ :: Checkbox -> [PropertyOrHandler handler] -> ReactElementM handler ()
 checkbox_ args props =
-  foreign_ "Checkbox" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "Checkbox" (fromMaybe [] (toProps args) ++ props) mempty

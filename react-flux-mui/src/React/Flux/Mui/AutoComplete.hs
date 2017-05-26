@@ -40,9 +40,6 @@ defAutoComplete =
   }
 
 autoComplete_ ::
-     AutoComplete
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     AutoComplete -> [PropertyOrHandler handler] -> ReactElementM handler ()
 autoComplete_ args props =
-  foreign_ "AutoComplete" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "AutoComplete" (fromMaybe [] (toProps args) ++ props) mempty

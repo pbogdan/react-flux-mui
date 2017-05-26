@@ -25,9 +25,6 @@ defToolbarTitle =
   ToolbarTitle {toolbarTitleClassName = Nothing, toolbarTitleText = Nothing}
 
 toolbarTitle_ ::
-     ToolbarTitle
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
+     ToolbarTitle -> [PropertyOrHandler handler] -> ReactElementM handler ()
 toolbarTitle_ args props =
-  foreign_ "ToolbarTitle" (fromMaybe [] (toProps args) ++ props)
+  foreign_ "ToolbarTitle" (fromMaybe [] (toProps args) ++ props) mempty

@@ -21,9 +21,6 @@ instance ToJSON Divider where
 defDivider :: Divider
 defDivider = Divider {dividerInset = Just False}
 
-divider_ ::
-     Divider
-  -> [PropertyOrHandler handler]
-  -> ReactElementM handler ()
-  -> ReactElementM handler ()
-divider_ args props = foreign_ "Divider" (fromMaybe [] (toProps args) ++ props)
+divider_ :: Divider -> [PropertyOrHandler handler] -> ReactElementM handler ()
+divider_ args props =
+  foreign_ "Divider" (fromMaybe [] (toProps args) ++ props) mempty
