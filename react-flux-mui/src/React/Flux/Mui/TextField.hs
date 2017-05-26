@@ -26,7 +26,7 @@ data TextField = TextField
   } deriving (Generic, Show)
 
 instance ToJSON TextField where
-  toJSON = genericToJSON $ aesonDrop (length ("TextField" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("TextField" :: String)) camelCase
 
 defTextField :: TextField
 defTextField =

@@ -18,7 +18,7 @@ data Badge = Badge
   } deriving (Generic, Show)
 
 instance ToJSON Badge where
-  toJSON = genericToJSON $ aesonDrop (length ("Badge" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Badge" :: String)) camelCase
 
 defBadge :: Badge
 defBadge =

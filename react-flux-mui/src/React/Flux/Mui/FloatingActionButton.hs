@@ -25,7 +25,7 @@ data FloatingActionButton = FloatingActionButton
 instance ToJSON FloatingActionButton where
   toJSON =
     genericToJSON $
-    aesonDrop (length ("FloatingActionButton" :: String)) snakeCase
+    aesonDrop (length ("FloatingActionButton" :: String)) camelCase
 
 defFloatingActionButton :: FloatingActionButton
 defFloatingActionButton =

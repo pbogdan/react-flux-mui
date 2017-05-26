@@ -24,7 +24,7 @@ data TableBody = TableBody
   } deriving (Generic, Show)
 
 instance ToJSON TableBody where
-  toJSON = genericToJSON $ aesonDrop (length ("TableBody" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("TableBody" :: String)) camelCase
 
 defTableBody :: TableBody
 defTableBody =

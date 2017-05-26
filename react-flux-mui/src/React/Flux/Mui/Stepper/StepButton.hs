@@ -19,7 +19,7 @@ data StepButton = StepButton
   } deriving (Generic, Show)
 
 instance ToJSON StepButton where
-  toJSON = genericToJSON $ aesonDrop (length ("StepButton" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("StepButton" :: String)) camelCase
 
 defStepButton :: StepButton
 defStepButton =

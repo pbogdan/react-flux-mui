@@ -25,7 +25,7 @@ data FlatButton = FlatButton
   } deriving (Generic, Show)
 
 instance ToJSON FlatButton where
-  toJSON = genericToJSON $ aesonDrop (length ("FlatButton" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("FlatButton" :: String)) camelCase
 
 defFlatButton :: (Maybe (MuiSymbolEnum '[ "before", "after"])) -> FlatButton
 defFlatButton flatButtonLabelPosition_ =

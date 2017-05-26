@@ -20,7 +20,7 @@ data Avatar = Avatar
   } deriving (Generic, Show)
 
 instance ToJSON Avatar where
-  toJSON = genericToJSON $ aesonDrop (length ("Avatar" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Avatar" :: String)) camelCase
 
 defAvatar :: Avatar
 defAvatar =

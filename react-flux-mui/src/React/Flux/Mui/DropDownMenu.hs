@@ -22,7 +22,7 @@ data DropDownMenu = DropDownMenu
 
 instance ToJSON DropDownMenu where
   toJSON =
-    genericToJSON $ aesonDrop (length ("DropDownMenu" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("DropDownMenu" :: String)) camelCase
 
 defDropDownMenu :: DropDownMenu
 defDropDownMenu =

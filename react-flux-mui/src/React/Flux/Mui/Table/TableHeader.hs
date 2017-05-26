@@ -21,7 +21,7 @@ data TableHeader = TableHeader
 
 instance ToJSON TableHeader where
   toJSON =
-    genericToJSON $ aesonDrop (length ("TableHeader" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("TableHeader" :: String)) camelCase
 
 defTableHeader :: TableHeader
 defTableHeader =

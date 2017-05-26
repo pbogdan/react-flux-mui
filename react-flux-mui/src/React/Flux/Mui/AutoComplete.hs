@@ -24,7 +24,7 @@ data AutoComplete = AutoComplete
 
 instance ToJSON AutoComplete where
   toJSON =
-    genericToJSON $ aesonDrop (length ("AutoComplete" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("AutoComplete" :: String)) camelCase
 
 defAutoComplete :: AutoComplete
 defAutoComplete =

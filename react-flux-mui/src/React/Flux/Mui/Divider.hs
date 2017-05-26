@@ -16,7 +16,7 @@ data Divider = Divider
   } deriving (Generic, Show)
 
 instance ToJSON Divider where
-  toJSON = genericToJSON $ aesonDrop (length ("Divider" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Divider" :: String)) camelCase
 
 defDivider :: Divider
 defDivider = Divider {dividerInset = Just False}

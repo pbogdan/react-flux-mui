@@ -19,7 +19,7 @@ data PopoverAnimationVertical = PopoverAnimationVertical
 instance ToJSON PopoverAnimationVertical where
   toJSON =
     genericToJSON $
-    aesonDrop (length ("PopoverAnimationVertical" :: String)) snakeCase
+    aesonDrop (length ("PopoverAnimationVertical" :: String)) camelCase
 
 defPopoverAnimationVertical :: Bool -> PopoverAnimationVertical
 defPopoverAnimationVertical popoverAnimationVerticalOpen_ =

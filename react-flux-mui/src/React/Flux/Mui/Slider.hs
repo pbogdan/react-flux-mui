@@ -23,7 +23,7 @@ data Slider = Slider
   } deriving (Generic, Show)
 
 instance ToJSON Slider where
-  toJSON = genericToJSON $ aesonDrop (length ("Slider" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Slider" :: String)) camelCase
 
 defSlider ::
      (Maybe (MuiSymbolEnum '[ "x", "x-reverse", "y", "y-reverse"]))

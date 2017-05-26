@@ -26,7 +26,7 @@ data Dialog = Dialog
   } deriving (Generic, Show)
 
 instance ToJSON Dialog where
-  toJSON = genericToJSON $ aesonDrop (length ("Dialog" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Dialog" :: String)) camelCase
 
 defDialog :: Bool -> Dialog
 defDialog dialogOpen_ =

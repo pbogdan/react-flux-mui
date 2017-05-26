@@ -21,7 +21,7 @@ data IconMenu = IconMenu
   } deriving (Generic, Show)
 
 instance ToJSON IconMenu where
-  toJSON = genericToJSON $ aesonDrop (length ("IconMenu" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("IconMenu" :: String)) camelCase
 
 defIconMenu :: IconMenu
 defIconMenu =

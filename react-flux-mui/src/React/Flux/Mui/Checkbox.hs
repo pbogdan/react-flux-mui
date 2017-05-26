@@ -21,7 +21,7 @@ data Checkbox = Checkbox
   } deriving (Generic, Show)
 
 instance ToJSON Checkbox where
-  toJSON = genericToJSON $ aesonDrop (length ("Checkbox" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Checkbox" :: String)) camelCase
 
 defCheckbox :: (Maybe (MuiSymbolEnum '[ "left", "right"])) -> Checkbox
 defCheckbox checkboxLabelPosition_ =

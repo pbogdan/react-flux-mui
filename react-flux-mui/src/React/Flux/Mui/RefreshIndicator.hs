@@ -25,7 +25,7 @@ data RefreshIndicator = RefreshIndicator
 
 instance ToJSON RefreshIndicator where
   toJSON =
-    genericToJSON $ aesonDrop (length ("RefreshIndicator" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("RefreshIndicator" :: String)) camelCase
 
 defRefreshIndicator ::
      Integer

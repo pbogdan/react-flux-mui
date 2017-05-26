@@ -19,7 +19,7 @@ data AppBar = AppBar
   } deriving (Generic, Show)
 
 instance ToJSON AppBar where
-  toJSON = genericToJSON $ aesonDrop (length ("AppBar" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("AppBar" :: String)) camelCase
 
 defAppBar :: AppBar
 defAppBar =

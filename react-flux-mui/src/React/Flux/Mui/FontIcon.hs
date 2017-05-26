@@ -17,7 +17,7 @@ data FontIcon = FontIcon
   } deriving (Generic, Show)
 
 instance ToJSON FontIcon where
-  toJSON = genericToJSON $ aesonDrop (length ("FontIcon" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("FontIcon" :: String)) camelCase
 
 defFontIcon :: FontIcon
 defFontIcon = FontIcon {fontIconColor = Nothing, fontIconHoverColor = Nothing}

@@ -16,7 +16,7 @@ data List = List
   } deriving (Generic, Show)
 
 instance ToJSON List where
-  toJSON = genericToJSON $ aesonDrop (length ("List" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("List" :: String)) camelCase
 
 defList :: List
 defList = List {}

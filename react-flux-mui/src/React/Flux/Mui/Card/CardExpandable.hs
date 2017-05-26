@@ -17,7 +17,7 @@ data CardExpandable = CardExpandable
 
 instance ToJSON CardExpandable where
   toJSON =
-    genericToJSON $ aesonDrop (length ("CardExpandable" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("CardExpandable" :: String)) camelCase
 
 defCardExpandable :: CardExpandable
 defCardExpandable = CardExpandable {cardExpandableExpanded = Nothing}

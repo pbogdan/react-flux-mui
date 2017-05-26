@@ -21,7 +21,7 @@ data Popover = Popover
   } deriving (Generic, Show)
 
 instance ToJSON Popover where
-  toJSON = genericToJSON $ aesonDrop (length ("Popover" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Popover" :: String)) camelCase
 
 defPopover :: Popover
 defPopover =

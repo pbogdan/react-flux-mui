@@ -18,7 +18,7 @@ data Tabs = Tabs
   } deriving (Generic, Show)
 
 instance ToJSON Tabs where
-  toJSON = genericToJSON $ aesonDrop (length ("Tabs" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Tabs" :: String)) camelCase
 
 defTabs :: Tabs
 defTabs =

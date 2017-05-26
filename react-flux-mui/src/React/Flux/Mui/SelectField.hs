@@ -22,7 +22,7 @@ data SelectField = SelectField
 
 instance ToJSON SelectField where
   toJSON =
-    genericToJSON $ aesonDrop (length ("SelectField" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("SelectField" :: String)) camelCase
 
 defSelectField :: SelectField
 defSelectField =

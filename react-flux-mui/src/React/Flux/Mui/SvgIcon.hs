@@ -18,7 +18,7 @@ data SvgIcon = SvgIcon
   } deriving (Generic, Show)
 
 instance ToJSON SvgIcon where
-  toJSON = genericToJSON $ aesonDrop (length ("SvgIcon" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("SvgIcon" :: String)) camelCase
 
 defSvgIcon :: SvgIcon
 defSvgIcon =

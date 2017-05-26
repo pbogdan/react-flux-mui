@@ -22,7 +22,7 @@ data GridTile = GridTile
   } deriving (Generic, Show)
 
 instance ToJSON GridTile where
-  toJSON = genericToJSON $ aesonDrop (length ("GridTile" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("GridTile" :: String)) camelCase
 
 defGridTile ::
      (Maybe (MuiSymbolEnum '[ "left", "right"]))

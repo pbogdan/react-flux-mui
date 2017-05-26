@@ -23,7 +23,7 @@ data TableRow = TableRow
   } deriving (Generic, Show)
 
 instance ToJSON TableRow where
-  toJSON = genericToJSON $ aesonDrop (length ("TableRow" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("TableRow" :: String)) camelCase
 
 defTableRow :: TableRow
 defTableRow =

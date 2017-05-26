@@ -18,7 +18,7 @@ data Snackbar = Snackbar
   } deriving (Generic, Show)
 
 instance ToJSON Snackbar where
-  toJSON = genericToJSON $ aesonDrop (length ("Snackbar" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Snackbar" :: String)) camelCase
 
 defSnackbar :: Bool -> Snackbar
 defSnackbar snackbarOpen_ =

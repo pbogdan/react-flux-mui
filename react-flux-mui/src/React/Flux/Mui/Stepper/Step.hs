@@ -20,7 +20,7 @@ data Step = Step
   } deriving (Generic, Show)
 
 instance ToJSON Step where
-  toJSON = genericToJSON $ aesonDrop (length ("Step" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Step" :: String)) camelCase
 
 defStep :: Step
 defStep =

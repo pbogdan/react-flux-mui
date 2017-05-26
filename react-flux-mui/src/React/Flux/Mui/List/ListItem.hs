@@ -27,7 +27,7 @@ data ListItem = ListItem
   } deriving (Generic, Show)
 
 instance ToJSON ListItem where
-  toJSON = genericToJSON $ aesonDrop (length ("ListItem" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("ListItem" :: String)) camelCase
 
 defListItem :: (Maybe (MuiNatEnum '[ 1, 2])) -> ListItem
 defListItem listItemSecondaryTextLines_ =

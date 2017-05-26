@@ -18,7 +18,7 @@ data BottomNavigationItem = BottomNavigationItem
 instance ToJSON BottomNavigationItem where
   toJSON =
     genericToJSON $
-    aesonDrop (length ("BottomNavigationItem" :: String)) snakeCase
+    aesonDrop (length ("BottomNavigationItem" :: String)) camelCase
 
 defBottomNavigationItem :: BottomNavigationItem
 defBottomNavigationItem = BottomNavigationItem {}

@@ -16,7 +16,7 @@ data Subheader = Subheader
   } deriving (Generic, Show)
 
 instance ToJSON Subheader where
-  toJSON = genericToJSON $ aesonDrop (length ("Subheader" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Subheader" :: String)) camelCase
 
 defSubheader :: Subheader
 defSubheader = Subheader {subheaderInset = Just False}

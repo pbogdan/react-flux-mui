@@ -20,7 +20,7 @@ data Stepper = Stepper
   } deriving (Generic, Show)
 
 instance ToJSON Stepper where
-  toJSON = genericToJSON $ aesonDrop (length ("Stepper" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Stepper" :: String)) camelCase
 
 defStepper :: (Maybe (MuiSymbolEnum '[ "horizontal", "vertical"])) -> Stepper
 defStepper stepperOrientation_ =

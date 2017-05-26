@@ -17,7 +17,7 @@ data CardMedia = CardMedia
   } deriving (Generic, Show)
 
 instance ToJSON CardMedia where
-  toJSON = genericToJSON $ aesonDrop (length ("CardMedia" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("CardMedia" :: String)) camelCase
 
 defCardMedia :: CardMedia
 defCardMedia =

@@ -21,7 +21,7 @@ data GridList = GridList
   } deriving (Generic, Show)
 
 instance ToJSON GridList where
-  toJSON = genericToJSON $ aesonDrop (length ("GridList" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("GridList" :: String)) camelCase
 
 defGridList :: (Maybe ((Integer :|: MuiSymbolEnum '[ "auto"]))) -> GridList
 defGridList gridListCellHeight_ =

@@ -20,7 +20,7 @@ data StepContent = StepContent
 
 instance ToJSON StepContent where
   toJSON =
-    genericToJSON $ aesonDrop (length ("StepContent" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("StepContent" :: String)) camelCase
 
 defStepContent :: StepContent
 defStepContent =

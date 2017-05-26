@@ -23,7 +23,7 @@ data LinearProgress = LinearProgress
 
 instance ToJSON LinearProgress where
   toJSON =
-    genericToJSON $ aesonDrop (length ("LinearProgress" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("LinearProgress" :: String)) camelCase
 
 defLinearProgress ::
      (Maybe (MuiSymbolEnum '[ "determinate", "indeterminate"]))

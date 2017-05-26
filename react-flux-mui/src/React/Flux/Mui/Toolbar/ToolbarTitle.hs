@@ -18,7 +18,7 @@ data ToolbarTitle = ToolbarTitle
 
 instance ToJSON ToolbarTitle where
   toJSON =
-    genericToJSON $ aesonDrop (length ("ToolbarTitle" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("ToolbarTitle" :: String)) camelCase
 
 defToolbarTitle :: ToolbarTitle
 defToolbarTitle =

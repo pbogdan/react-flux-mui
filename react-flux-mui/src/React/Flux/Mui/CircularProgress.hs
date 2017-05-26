@@ -25,7 +25,7 @@ data CircularProgress = CircularProgress
 
 instance ToJSON CircularProgress where
   toJSON =
-    genericToJSON $ aesonDrop (length ("CircularProgress" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("CircularProgress" :: String)) camelCase
 
 defCircularProgress ::
      (Maybe (MuiSymbolEnum '[ "determinate", "indeterminate"]))

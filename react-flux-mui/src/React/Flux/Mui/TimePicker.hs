@@ -21,7 +21,7 @@ data TimePicker = TimePicker
   } deriving (Generic, Show)
 
 instance ToJSON TimePicker where
-  toJSON = genericToJSON $ aesonDrop (length ("TimePicker" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("TimePicker" :: String)) camelCase
 
 defTimePicker :: (Maybe (MuiSymbolEnum '[ "ampm", "24hr"])) -> TimePicker
 defTimePicker timePickerFormat_ =

@@ -21,7 +21,7 @@ data RadioButton = RadioButton
 
 instance ToJSON RadioButton where
   toJSON =
-    genericToJSON $ aesonDrop (length ("RadioButton" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("RadioButton" :: String)) camelCase
 
 defRadioButton :: (Maybe (MuiSymbolEnum '[ "left", "right"])) -> RadioButton
 defRadioButton radioButtonLabelPosition_ =

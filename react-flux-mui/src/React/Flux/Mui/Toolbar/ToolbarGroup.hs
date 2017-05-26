@@ -19,7 +19,7 @@ data ToolbarGroup = ToolbarGroup
 
 instance ToJSON ToolbarGroup where
   toJSON =
-    genericToJSON $ aesonDrop (length ("ToolbarGroup" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("ToolbarGroup" :: String)) camelCase
 
 defToolbarGroup :: ToolbarGroup
 defToolbarGroup =

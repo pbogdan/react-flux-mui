@@ -17,7 +17,7 @@ data Chip = Chip
   } deriving (Generic, Show)
 
 instance ToJSON Chip where
-  toJSON = genericToJSON $ aesonDrop (length ("Chip" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Chip" :: String)) camelCase
 
 defChip :: Chip
 defChip = Chip {chipBackgroundColor = Nothing, chipLabelColor = Nothing}

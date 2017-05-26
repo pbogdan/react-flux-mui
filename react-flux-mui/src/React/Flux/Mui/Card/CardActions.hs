@@ -19,7 +19,7 @@ data CardActions = CardActions
 
 instance ToJSON CardActions where
   toJSON =
-    genericToJSON $ aesonDrop (length ("CardActions" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("CardActions" :: String)) camelCase
 
 defCardActions :: CardActions
 defCardActions =

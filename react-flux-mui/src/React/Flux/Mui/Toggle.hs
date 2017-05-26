@@ -21,7 +21,7 @@ data Toggle = Toggle
   } deriving (Generic, Show)
 
 instance ToJSON Toggle where
-  toJSON = genericToJSON $ aesonDrop (length ("Toggle" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Toggle" :: String)) camelCase
 
 defToggle :: (Maybe (MuiSymbolEnum '[ "left", "right"])) -> Toggle
 defToggle toggleLabelPosition_ =

@@ -18,7 +18,7 @@ data TableFooter = TableFooter
 
 instance ToJSON TableFooter where
   toJSON =
-    genericToJSON $ aesonDrop (length ("TableFooter" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("TableFooter" :: String)) camelCase
 
 defTableFooter :: TableFooter
 defTableFooter =

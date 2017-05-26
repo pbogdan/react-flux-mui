@@ -17,7 +17,7 @@ data MuiThemeProvider = MuiThemeProvider
 
 instance ToJSON MuiThemeProvider where
   toJSON =
-    genericToJSON $ aesonDrop (length ("MuiThemeProvider" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("MuiThemeProvider" :: String)) camelCase
 
 defMuiThemeProvider :: MuiThemeProvider
 defMuiThemeProvider = MuiThemeProvider {}

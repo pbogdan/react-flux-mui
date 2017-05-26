@@ -24,7 +24,7 @@ data Drawer = Drawer
   } deriving (Generic, Show)
 
 instance ToJSON Drawer where
-  toJSON = genericToJSON $ aesonDrop (length ("Drawer" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Drawer" :: String)) camelCase
 
 defDrawer :: Drawer
 defDrawer =

@@ -29,7 +29,7 @@ data RaisedButton = RaisedButton
 
 instance ToJSON RaisedButton where
   toJSON =
-    genericToJSON $ aesonDrop (length ("RaisedButton" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("RaisedButton" :: String)) camelCase
 
 defRaisedButton :: (Maybe (MuiSymbolEnum '[ "before", "after"])) -> RaisedButton
 defRaisedButton raisedButtonLabelPosition_ =

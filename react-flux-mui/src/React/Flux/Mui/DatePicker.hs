@@ -25,7 +25,7 @@ data DatePicker = DatePicker
   } deriving (Generic, Show)
 
 instance ToJSON DatePicker where
-  toJSON = genericToJSON $ aesonDrop (length ("DatePicker" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("DatePicker" :: String)) camelCase
 
 defDatePicker :: (Maybe (MuiSymbolEnum '[ "dialog", "inline"])) -> DatePicker
 defDatePicker datePickerContainer_ =

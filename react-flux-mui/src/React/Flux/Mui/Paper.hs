@@ -18,7 +18,7 @@ data Paper = Paper
   } deriving (Generic, Show)
 
 instance ToJSON Paper where
-  toJSON = genericToJSON $ aesonDrop (length ("Paper" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Paper" :: String)) camelCase
 
 defPaper :: Paper
 defPaper =

@@ -19,7 +19,7 @@ data StepLabel = StepLabel
   } deriving (Generic, Show)
 
 instance ToJSON StepLabel where
-  toJSON = genericToJSON $ aesonDrop (length ("StepLabel" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("StepLabel" :: String)) camelCase
 
 defStepLabel :: StepLabel
 defStepLabel =

@@ -20,7 +20,7 @@ data TableHeaderColumn = TableHeaderColumn
 
 instance ToJSON TableHeaderColumn where
   toJSON =
-    genericToJSON $ aesonDrop (length ("TableHeaderColumn" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("TableHeaderColumn" :: String)) camelCase
 
 defTableHeaderColumn :: TableHeaderColumn
 defTableHeaderColumn =

@@ -21,7 +21,7 @@ data Menu = Menu
   } deriving (Generic, Show)
 
 instance ToJSON Menu where
-  toJSON = genericToJSON $ aesonDrop (length ("Menu" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Menu" :: String)) camelCase
 
 defMenu :: Menu
 defMenu =

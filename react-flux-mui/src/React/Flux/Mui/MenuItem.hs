@@ -22,7 +22,7 @@ data MenuItem = MenuItem
   } deriving (Generic, Show)
 
 instance ToJSON MenuItem where
-  toJSON = genericToJSON $ aesonDrop (length ("MenuItem" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("MenuItem" :: String)) camelCase
 
 defMenuItem ::
      (Maybe (MuiSymbolEnum '[ "none", "focused", "keyboard-focused"]))

@@ -21,7 +21,7 @@ data RadioButtonGroup = RadioButtonGroup
 
 instance ToJSON RadioButtonGroup where
   toJSON =
-    genericToJSON $ aesonDrop (length ("RadioButtonGroup" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("RadioButtonGroup" :: String)) camelCase
 
 defRadioButtonGroup :: Text -> RadioButtonGroup
 defRadioButtonGroup radioButtonGroupName_ =

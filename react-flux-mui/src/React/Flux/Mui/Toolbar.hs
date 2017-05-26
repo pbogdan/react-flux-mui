@@ -17,7 +17,7 @@ data Toolbar = Toolbar
   } deriving (Generic, Show)
 
 instance ToJSON Toolbar where
-  toJSON = genericToJSON $ aesonDrop (length ("Toolbar" :: String)) snakeCase
+  toJSON = genericToJSON $ aesonDrop (length ("Toolbar" :: String)) camelCase
 
 defToolbar :: Toolbar
 defToolbar = Toolbar {toolbarClassName = Nothing, toolbarNoGutter = Just False}

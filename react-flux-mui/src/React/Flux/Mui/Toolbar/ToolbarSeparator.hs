@@ -17,7 +17,7 @@ data ToolbarSeparator = ToolbarSeparator
 
 instance ToJSON ToolbarSeparator where
   toJSON =
-    genericToJSON $ aesonDrop (length ("ToolbarSeparator" :: String)) snakeCase
+    genericToJSON $ aesonDrop (length ("ToolbarSeparator" :: String)) camelCase
 
 defToolbarSeparator :: ToolbarSeparator
 defToolbarSeparator = ToolbarSeparator {toolbarSeparatorClassName = Nothing}
