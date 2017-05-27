@@ -72,9 +72,7 @@ generate = do
                     resolveExtraImports . altLefts . view componentProps $
                     component
                 , muiModuleHasChildren =
-                    getAny .
-                    mconcat .
-                    map (Any . (== "children") . view propName) .
+                    any ((== "children") . view propName) .
                     altRights . view componentProps $
                     component
                 }
